@@ -194,6 +194,26 @@ To run in the background so it survives terminal disconnect:
 nohup /QOpenSys/pkgs/bin/mapepire-server &
 ```
 
+### Connection Pool Jobs on IBM i
+
+Mapepire manages a connection pool on the IBM i side. The pool jobs run in the **`QUSRWRK`** subsystem. To view them from a 5250 session:
+
+```
+WRKACTJOB SBS(QUSRWRK)
+```
+
+Or query them via SQL:
+
+```sql
+SELECT JOB_NAME, JOB_TYPE, JOB_STATUS, CURRENT_USER, FUNCTION
+FROM QSYS2.ACTIVE_JOB_INFO
+WHERE SUBSYSTEM = 'QUSRWRK'
+  AND FUNCTION LIKE '%MAPEPIRE%'
+ORDER BY JOB_NAME
+```
+
+> If you need to confirm the port being used, filter by `QSYS2.NETSTAT_JOB_INFO` on port **8076** joined to `QSYS2.ACTIVE_JOB_INFO`.
+
 ### Verify Connectivity
 
 From a PowerShell window on your development machine:
