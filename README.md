@@ -18,6 +18,7 @@ A full-stack web application for managing customer master data stored on IBM i (
 ## Screenshots
 
 **Login Screen** — users authenticate with their IBM i (OS/400) credentials.
+![Login Screen](images/login_screen.png)
 
 **Customer List** — paginated table with search and actions for each record.
 
@@ -214,7 +215,7 @@ The client is configured with `rejectUnauthorized: false` (in [server/src/config
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd customer-maintenance
+cd customer-maintenance-with-user-session-login
 
 # Install all dependencies (client and server) in one step
 npm install
